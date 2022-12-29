@@ -892,6 +892,12 @@
       "config_flow": true,
       "iot_class": "cloud_push"
     },
+    "cul_somfy": {
+      "name": "CUL Somfy RTS",
+      "integration_type": "hub",
+      "config_flow": true,
+      "iot_class": "local_polling"
+    },
     "cups": {
       "name": "CUPS",
       "integration_type": "hub",

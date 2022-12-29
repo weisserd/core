@@ -83,6 +83,7 @@ FLOWS = {
         "coronavirus",
         "cpuspeed",
         "crownstone",
+        "cul_somfy",
         "daikin",
         "deconz",
         "deluge",

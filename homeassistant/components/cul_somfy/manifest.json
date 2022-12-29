@@ -1,0 +1,14 @@
+{
+  "domain": "cul_somfy",
+  "name": "CUL Somfy RTS",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/cul_somfy",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": ["usb"],
+  "loggers": ["cul_somfy"],
+  "codeowners": ["@weisserd"],
+  "iot_class": "local_polling"
+}
