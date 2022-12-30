@@ -11,12 +11,14 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.components import usb
-from homeassistant.const import CONF_DEVICE, CONF_NAME
+from homeassistant.const import CONF_DEVICE
 from homeassistant.data_entry_flow import FlowResult
 
 from .const import DEFAULT_NAME, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
+
+# LATER Add automated USB detection
 
 
 def _generate_unique_id(port: ListPortInfo) -> str:
@@ -73,7 +75,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
             if errors is None:
                 return self.async_create_entry(
-                    title=user_input.get(CONF_NAME, DEFAULT_NAME),
+                    title=DEFAULT_NAME + " - " + dev_path,
                     data={CONF_DEVICE: dev_path},
                 )
         user_input = user_input or {}
@@ -91,6 +93,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         try:
             # api = CulStick()
             # await api.test(dev_path)
+            # LATER Check for information
             _LOGGER.info("Test CUL stick")
         except SerialException:
             return {"base": "cannot_connect"}

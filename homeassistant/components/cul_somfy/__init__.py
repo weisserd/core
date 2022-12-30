@@ -7,23 +7,21 @@ from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
 
-# For your initial PR, limit it to 1 platform.
+# CUL stick is a remote, covers are allowed
 PLATFORMS: list[Platform] = [Platform.REMOTE, Platform.COVER]
+
+# LATER Only allow one stick - https://github.com/weisserd/core/blob/cul_somfy/homeassistant/components/enocean/__init__.py#L18
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up CUL Somfy RTS from a config entry."""
-
     hass.data.setdefault(DOMAIN, {})
-
-    # await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setup(entry, Platform.REMOTE)
+    )
     return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
-    if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
-        hass.data[DOMAIN].pop(entry.entry_id)
-
-    return unload_ok
+    return True
